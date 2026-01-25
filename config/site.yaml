@@ -19,7 +19,7 @@ site:
   avatar: /img/avatar.webp # Website avatar
   showLogo: true # Whether to display logo
   author: Jeet-u # Author name - please modify to your name
-  url: http://localhost:4321/ # Site URL used for RSS and SEO
+  url: https://flux-tech-repair.vercel.app/ # Site URL used for RSS and SEO
   startYear: 2024 # Site establishment year
   keywords: # SEO keywords
     - blog
