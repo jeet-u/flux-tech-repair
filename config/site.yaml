@@ -14,7 +14,7 @@ site:
   title: Microsoldering # Website name
   alternate: Flux Tech Repair # Website English name used for footer, logo, @ handle, etc.
   subtitle: Data Recovery Solutions # Website subtitle
-  name: Flux-Tech-Repair # Author name - please modify to your name
+  name: Flux Tech Repair # Author name - please modify to your name
   description: Logic Board Microsoldering # Website description
   avatar: /img/avatar.webp # Website avatar
   showLogo: true # Whether to display logo
