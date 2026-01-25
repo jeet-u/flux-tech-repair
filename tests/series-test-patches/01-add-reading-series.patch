@@ -1,0 +1,79 @@
+diff --git a/config/site.yaml b/config/site.yaml
+--- a/config/site.yaml
++++ b/config/site.yaml
+@@ -42,8 +42,8 @@ categoryMap:
+   Weekly: weekly
+   # Secondary categories (for nested paths)
+   Frontend: front-end
++  reading-notes: reading
+   # Add more as needed:
+-  # Book Notes: reading
+   # Backend: back-end
+   # Algorithm: algorithm
+   # Project: project
+@@ -110,14 +110,13 @@ featuredSeries:
+       rss: /rss.xml # (Optional) RSS subscription link
+       # chrome: https://chromewebstore.google.com/detail/your-extension-id # (Optional) Browser extension
+       # docs: https://your-docs-url # (Optional) Documentation link
+-  # Example: Add second series (uncomment to enable)
+-  # - slug: reading # URL path: /reading
+-  #   categoryName: Book Notes
+-  #   label: Reading Notes
+-  #   fullName: My Reading Notes
+-  #   description: Reading records and reflections
+-  #   cover: /img/weekly_header.webp # Remember to add, this is just an example
+-  #   enabled: true
+-  #   icon: ri:book-read-line
++  - slug: reading
++    categoryName: Book Notes
++    label: Reading Notes
++    fullName: My Reading Notes
++    description: Reading records and reflections
++    cover: /img/weekly_header.webp
++    enabled: true
++    icon: ri:book-read-line
+ 
+ # =============================================================================
+@@ -318,8 +317,9 @@ navigation:
+   - name:  # Menu display name
+     path: / # Link path
+     icon: ri:home-heart-fill # Icon
+-  # - name: Book Notes
+-  #   path: /reading
++  - name: Reading Notes
++    path: /reading
++    icon: ri:book-read-line
+   - name: Weekly
+     path: /weekly
+     icon: ri:newspaper-line
+diff --git a/src/content/blog/reading/test-book.md b/src/content/blog/reading/test-book.md
+new file mode 100644
+--- /dev/null
++++ b/src/content/blog/reading/test-book.md
+@@ -0,0 +1,25 @@
++---
++title: "Test Book" Reading Notes
++date: 2025-01-15
++categories:
++  - reading-notes
++tags:
++  - reading-notes
++  - test
++description: This is a test reading notes article for testing the multi-series functionality
++---
++
++# "Test Book" Reading Notes
++
++This is a test reading notes article for testing the multi-series functionality.
++
++## Content Summary
++
++This book tells...（test content）
++
++## Reading Reflection
++
++After reading this book, I felt...（test content）
++
++## Recommendation Rating
++
++⭐⭐⭐⭐⭐ Five stars recommended!

@@ -1,0 +1,325 @@
+---
+import type { HomeSiderType } from '@constants/enum';
+import type { BlogPost } from 'types/blog';
+
+interface Props {
+  title: string;
+  description?: string;
+  siderType?: HomeSiderType;
+  post?: BlogPost;
+}
+
+import { ClientRouter } from 'astro:transitions';
+import AnnouncementProvider from '@components/announcement/AnnouncementProvider.astro';
+import ChristmasEffects from '@components/christmas/ChristmasEffects.astro';
+import FloatingGroup from '@components/layout/FloatingGroup';
+import Header from '@components/layout/Header.astro';
+import MobileDrawer from '@components/layout/MobileDrawer.astro';
+import SearchDialog from '@components/layout/SearchDialog';
+import SearchPortal from '@components/layout/SearchPortal.astro';
+import CodeBlockFullscreen from '@components/markdown/CodeBlockFullscreen';
+import InfographicFullscreen from '@components/markdown/InfographicFullscreen.astro';
+import MermaidFullscreen from '@components/markdown/MermaidFullscreen.astro';
+import { Toaster } from '@components/ui/sonner';
+import { christmasConfig, seoConfig, siteConfig } from '@constants/site-config';
+import LoadingIndicator from 'astro-loading-indicator/component';
+import { Tooltips } from 'astro-tooltips';
+
+import '@styles/index.css';
+
+const { title = seoConfig.title, description = seoConfig.description, siderType, post } = Astro.props;
+// TODO: siderType should be custom in router file, not in layout
+
+// Detect if current page is a post page for mobile header
+const isPostPage = Astro.url.pathname.startsWith('/post/');
+---
+
+<!doctype html>
+<html transition:name="root" lang="zh-CN" class="vertical-scrollbar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Preconnect to third-party origins for faster resource loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://chinese-font.netlify.app" crossorigin />
+    <link rel="dns-prefetch" href="https://chinese-font.netlify.app" />
+
+    <!-- Async load Chinese fonts to avoid render-blocking 
+    <link rel="stylesheet" href="/fonts/ChillRoundFRegular/result.css" media="print" onload="this.setAttribute('media','all')" />
+    <link rel="stylesheet" href="/fonts/ChillRoundFBold/result.css" media="print" onload="this.setAttribute('media','all')" />
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+
+
+    <ClientRouter />
+    <LoadingIndicator color="#e9536a" />
+    <Tooltips />
+    <!-- metadata -->
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- <meta property="og:image" content="/opengraph.png?v=1" /> TODO: og image-->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta charset="UTF-8" />
+
+    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={`${Astro.site}rss.xml`} />
+
+    <script is:inline>
+      // Theme system - execute immediately to prevent FOUC (Flash of Unstyled Content)
+      // Priority: 1. User manual selection > 2. System preference
+      (function() {
+        function getTheme() {
+          // User explicitly selected a theme
+          if (localStorage.theme === 'dark') return 'dark';
+          if (localStorage.theme === 'light') return 'light';
+          // Not set, follow system preference
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyTheme(theme) {
+          var root = document.documentElement;
+          root.classList.toggle('dark', theme === 'dark');
+          root.dataset.theme = theme; // For astro-mermaid autoTheme
+        }
+
+        // Apply theme immediately
+        applyTheme(getTheme());
+
+        // Listen to system theme preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+          // Only auto-switch if user hasn't explicitly selected a theme
+          if (!('theme' in localStorage)) {
+            applyTheme(getTheme());
+          }
+        });
+
+        // Reapply theme after View Transition page switch (before DOM render)
+        document.addEventListener('astro:after-swap', function() {
+          applyTheme(getTheme());
+        });
+      })();
+    </script>
+    <script is:inline define:vars={{ christmasFeatureEnabled: christmasConfig.enabled }}>
+      // Execute immediately to check Christmas state, otherwise lights will flicker
+      (function () {
+        // If disabled at build time, always disable
+        if (!christmasFeatureEnabled) {
+          document.documentElement.classList.remove('christmas');
+          return;
+        }
+        // Otherwise use user preference
+        var stored = localStorage.getItem('christmas-enabled');
+        var enabled = stored !== 'false'; // Default enabled
+        document.documentElement.classList.toggle('christmas', enabled);
+      })();
+    </script>
+    <script>
+      // CodePen embed initialization for Astro page transitions
+      // https://blog.codepen.io/documentation/embedded-pens/
+
+      declare global {
+        interface Window {
+          __CPEmbed?: () => void;
+        }
+      }
+
+      let codepenScriptLoaded = false;
+
+      function loadCodePenScript() {
+        return new Promise<void>((resolve, reject) => {
+          // Check if already loaded
+          if (codepenScriptLoaded || window.__CPEmbed) {
+            resolve();
+            return;
+          }
+
+          const script = document.createElement('script');
+          script.src = 'https://cpwebassets.codepen.io/assets/embed/ei.js';
+          script.async = true;
+          script.onload = () => {
+            codepenScriptLoaded = true;
+            resolve();
+          };
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
+
+      async function initializeCodePenEmbeds() {
+        // Check if there are any CodePen embeds on the page
+        const codepenElements = document.querySelectorAll('.codepen');
+        if (codepenElements.length === 0) {
+          return;
+        }
+
+        try {
+          // Load the CodePen script if not already loaded
+          await loadCodePenScript();
+
+          // Initialize all CodePen embeds
+          if (window.__CPEmbed) {
+            window.__CPEmbed();
+          }
+        } catch (error) {
+          console.error('[CodePen Embed] Failed to load CodePen embed script:', error);
+        }
+      }
+
+      // Initialize on initial page load
+      if (document.readyState !== 'loading') {
+        initializeCodePenEmbeds();
+      }
+
+      // Re-initialize on Astro page transitions
+      document.addEventListener('astro:page-load', initializeCodePenEmbeds);
+    </script>
+    <script>
+      /**
+       * Mermaid Navigation Fix
+       * Fix rendering issues when navigating from pages without mermaid to pages with mermaid
+       *
+       * Root cause: astro-mermaid's astro:after-swap listener is registered inside import().then()
+       * When home page has no mermaid diagrams, the listener won't be registered, causing client-side navigation to not render
+       */
+      let mermaidModule: typeof import('mermaid').default | null = null;
+      let themeObserverSetup = false;
+
+      function hasUnprocessedDiagrams() {
+        return document.querySelectorAll('pre.mermaid:not([data-processed])').length > 0;
+      }
+
+      function getCurrentTheme(): 'default' | 'dark' | 'forest' | 'neutral' | 'base' | 'null' | undefined {
+        const dataTheme = document.documentElement.getAttribute('data-theme') || document.body?.getAttribute('data-theme');
+        // Explicitly restrict mapping to supported values
+        switch (dataTheme) {
+          case 'default':
+          case 'dark':
+          case 'forest':
+          case 'neutral':
+          case 'base':
+          case 'null':
+            return dataTheme;
+          case 'light':
+            // Map any explicit "light" to "default"
+            return 'default';
+          default:
+            return 'default';
+        }
+      }
+
+      async function initMermaidDiagrams() {
+        const diagrams = document.querySelectorAll('pre.mermaid:not([data-processed])');
+        if (diagrams.length === 0) return;
+
+        if (!mermaidModule) {
+          const { default: mermaid } = await import('mermaid');
+          mermaidModule = mermaid;
+        }
+
+        mermaidModule.initialize({
+          startOnLoad: false,
+          theme: getCurrentTheme(),
+          gitGraph: { mainBranchName: 'main', showCommitLabel: true, showBranches: true, rotateCommitLabel: true },
+        });
+
+        for (const diagram of diagrams) {
+          const pre = diagram as HTMLElement;
+          if (!pre.hasAttribute('data-diagram')) {
+            pre.setAttribute('data-diagram', pre.textContent || '');
+          }
+          const definition = pre.getAttribute('data-diagram') || '';
+          const id = 'mermaid-' + Math.random().toString(36).slice(2, 11);
+
+          try {
+            const { svg } = await mermaidModule.render(id, definition);
+            pre.innerHTML = svg;
+            pre.setAttribute('data-processed', 'true');
+          } catch (error) {
+            console.error('[mermaid-nav-fix] Error:', error);
+            pre.setAttribute('data-processed', 'true');
+          }
+        }
+
+        window.dispatchEvent(new CustomEvent('mermaid:rendered'));
+
+        if (!themeObserverSetup && mermaidModule) {
+          const observer = new MutationObserver(() => {
+            document.querySelectorAll('pre.mermaid[data-processed]').forEach((d) => d.removeAttribute('data-processed'));
+            initMermaidDiagrams();
+          });
+          observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+          themeObserverSetup = true;
+        }
+      }
+
+      // Critical: Always register listener, not dependent on current page content
+      // Only handle client-side navigation, direct access is handled by astro-mermaid
+      document.addEventListener('astro:after-swap', () => {
+        requestAnimationFrame(() => {
+          if (hasUnprocessedDiagrams()) {
+            initMermaidDiagrams();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <ChristmasEffects transition:persist="christmas-snowfall" />
+    <div class="flex min-h-screen flex-col text-black dark:text-white">
+      <Header isPostPage={isPostPage} tocNumbering={post?.data.tocNumbering ?? true} />
+      <main class="relative flex grow flex-col gap-4">
+        {(<slot />)}
+      </main>
+      <FloatingGroup client:only="react" />
+      <MobileDrawer type={siderType} post={post} />
+      <SearchDialog client:load />
+      <SearchPortal />
+      <CodeBlockFullscreen client:load />
+      <MermaidFullscreen />
+      <InfographicFullscreen />
+      <Toaster client:load />
+      <AnnouncementProvider />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  /* Progressive enhancement: scroll-state is experimental, browsers that don't support it will just not show the feather mask */
+  @supports (container-type: scroll-state) {
+    .scroll-feather-mask {
+      container-type: scroll-state;
+    }
+
+  @container scroll-state(scrollable: bottom) {
+      .scroll-feather-mask::after {
+        content: '';
+        background: linear-gradient(to bottom, transparent 0%, var(--gradient-bg-start) var(--mask-end-percent, 50%), var(--gradient-bg-start) var(--mask-start-percent, 100%));
+        position: absolute;
+        top: var(--mask-top, auto);
+        left: var(--mask-left, 0);
+        right: var(--mask-right, 0);
+        bottom: var(--mask-bottom, 0);
+        z-index: 10;
+        display: block;
+        height: var(--mask-height, 5rem);
+      }
+    }
+  }
+</style>

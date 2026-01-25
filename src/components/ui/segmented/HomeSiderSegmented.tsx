@@ -1,0 +1,51 @@
+import { type OptionType, Segmented } from '@components/ui/segmented';
+import type { HomeSiderSegmentType } from '@constants/enum';
+import { HomeSiderSegmentType as SegmentTypeEnum } from '@constants/enum';
+import { homeSiderSegmentType } from '@store/app';
+import React from 'react';
+import { RiArticleLine, RiDashboard3Line, RiListOrdered2 } from 'react-icons/ri';
+import { cn } from '@/lib/utils';
+
+type HomeSiderSegmentedProps = {
+  defaultValue?: HomeSiderSegmentType; // Default value
+  className?: string;
+  indicateClass?: string;
+  itemClass?: string;
+  id?: string;
+  value?: HomeSiderSegmentType; // Controlled
+};
+
+export const HomeSiderSegmented = ({ className, ...props }: HomeSiderSegmentedProps) => {
+  const options: OptionType<HomeSiderSegmentType>[] = [
+    {
+      label: 'Site Overview',
+      value: SegmentTypeEnum.INFO,
+      icon: RiDashboard3Line,
+    },
+    {
+      label: 'Post Directory',
+      value: SegmentTypeEnum.DIRECTORY,
+      icon: RiListOrdered2,
+    },
+    {
+      label: 'Series',
+      value: SegmentTypeEnum.SERIES,
+      icon: RiArticleLine,
+    },
+  ];
+
+  return (
+    <Segmented<HomeSiderSegmentType>
+      {...props}
+      options={options}
+      className={cn(
+        'flex w-fit cursor-pointer select-none rounded-sm bg-black/8 p-1 font-semibold text-xs backdrop-blur-lg',
+        className,
+      )}
+      onChange={(value) => homeSiderSegmentType.set(value)}
+    />
+  );
+};
+
+HomeSiderSegmented.displayName = 'HomeSiderSegmented';
+export default React.memo(HomeSiderSegmented);

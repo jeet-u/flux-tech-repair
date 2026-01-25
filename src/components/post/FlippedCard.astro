@@ -1,0 +1,111 @@
+---
+export interface Props {
+  className?: string;
+  /**
+   * Flip direction
+   * @default 'horizontal'
+   */
+  direction?: 'horizontal' | 'vertical';
+  /**
+   * Flip animation duration (ms)
+   * @default 600
+   */
+  duration?: number;
+  /**
+   * Anti-misclick delay (ms), wait before flipping on hover
+   * @default 100
+   */
+  delay?: number;
+  /**
+   * Whether to disable flipping
+   * @default false
+   */
+  disabled?: boolean;
+}
+
+const { className, direction = 'horizontal', duration = 600, delay = 100, disabled = false } = Astro.props;
+---
+
+<div class:list={['flip-card h-56', className, { 'flip-card-disabled': disabled }]} data-direction={direction}>
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <slot name="front" />
+    </div>
+    <div class="flip-card-back">
+      <slot name="back" />
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ duration, delay }}>
+  .flip-card {
+    position: relative;
+    background-color: transparent;
+    perspective: 1000px;
+  }
+
+  /* Transparent overlay to keep hover area stable and unaffected by 3D transforms */
+  .flip-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 600ms;
+    transform-style: preserve-3d;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .flip-card:not(.flip-card-disabled):hover .flip-card-inner {
+    transform: rotateY(-180deg);
+    transition-delay: calc(var(--delay) * 1ms);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border-radius: 0.5rem;
+    pointer-events: auto;
+  }
+
+  .flip-card-front {
+    z-index: 2;
+  }
+
+  .flip-card-back {
+    transform: rotateY(-180deg);
+  }
+
+  .flip-card-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Add transition effects */
+  .flip-card-front,
+  .flip-card-back {
+    transition: all calc(var(--duration) * 1ms) ease-in-out;
+  }
+
+  /* Add shadow effects */
+  .flip-card:not(.flip-card-disabled):hover .flip-card-front {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .flip-card:not(.flip-card-disabled):hover .flip-card-back {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>

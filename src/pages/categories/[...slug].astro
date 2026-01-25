@@ -1,0 +1,36 @@
+---
+import CategoryPostList from '@components/category/CategoryPostList.astro';
+import HomeSider from '@components/layout/HomeSider.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { seoConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
+import { getCategoryByLink, getCategoryLinks, getCategoryList } from '@lib/content';
+
+// Get category pages
+export async function getStaticPaths() {
+  const { categories } = await getCategoryList();
+  const links = getCategoryLinks(categories, '');
+  return links.map((link) => {
+    const category = getCategoryByLink(categories, link);
+    return {
+      params: { slug: link },
+      props: { category },
+    };
+  });
+}
+
+const { category } = Astro.props;
+const { categories: allCategories, countMap } = await getCategoryList();
+
+// If it's a subcategory, only display the current category's content
+const displayCategories = category ? [category] : allCategories;
+---
+
+<Layout title={`Category - ${category?.name} | ${seoConfig.title}`}>
+  <TwoColumnLayout>
+    <Cover slot="cover" title={`Articles in category "${category?.name}"`} />
+    <HomeSider slot="sider" />
+    <CategoryPostList rootCategory={category} categories={displayCategories} countMap={countMap} />
+  </TwoColumnLayout>
+</Layout>

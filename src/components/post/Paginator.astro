@@ -1,0 +1,95 @@
+---
+import { Button } from '@components/ui/button';
+import type { Page } from 'astro';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import type { BlogPost } from 'types/blog';
+
+interface Props {
+  page: Page<BlogPost>;
+  baseUrl?: string; // Pagination base path, defaults to '/posts'
+  isHomePage?: boolean; // Whether this is the home page
+}
+
+const { page, baseUrl = '/posts', isHomePage = false } = Astro.props;
+
+// Helper function to generate page links
+const getPageUrl = (pageNum: number) => {
+  // If home page mode, page 1 points to '/', other pages point to '/posts/x'
+  if (isHomePage) {
+    return pageNum === 1 ? '/' : `${baseUrl}/${pageNum}`;
+  }
+  // Normal mode: page 1 is baseUrl, other pages are baseUrl/2 etc
+  return pageNum === 1 ? baseUrl : `${baseUrl}/${pageNum}`;
+};
+---
+
+<div class="flex-center gap-1 font-bold">
+  {
+    page.url.prev ? (
+      <a href={page.url.prev} aria-label="Previous page">
+        <Button variant="ghost">
+          <FaChevronLeft />
+        </Button>
+      </a>
+    ) : (
+      <Button variant="ghost" disabled aria-label="Previous page">
+        <FaChevronLeft />
+      </Button>
+    )
+  }
+
+  {
+    page.currentPage !== 1 && page.currentPage - 1 !== 1 && (
+      <a href={getPageUrl(1)} aria-label="Page 1">
+        <Button variant="ghost">1</Button>
+      </a>
+    )
+  }
+  {page.currentPage > 2 && <span class="mx-1">...</span>}
+  {
+    page.currentPage !== 1 && (
+      <a href={getPageUrl(page.currentPage - 1)} aria-label={`Page ${page.currentPage - 1}`}>
+        <Button variant="ghost">{page.currentPage - 1}</Button>
+      </a>
+    )
+  }
+
+  <Button
+    variant="ghost"
+    disabled
+    aria-current="page"
+    aria-label={`Page ${page.currentPage}, current page`}
+    className="text-primary disabled:opacity-100"
+  >
+    {page.currentPage}
+  </Button>
+
+  {
+    page.currentPage !== page.lastPage && (
+      <a href={getPageUrl(page.currentPage + 1)} aria-label={`Page ${page.currentPage + 1}`}>
+        <Button variant="ghost">{page.currentPage + 1}</Button>
+      </a>
+    )
+  }
+  {page.currentPage < page.lastPage - 2 && <span class="mx-1">...</span>}
+  {
+    page.currentPage !== page.lastPage && page.currentPage + 1 !== page.lastPage && (
+      <a href={getPageUrl(page.lastPage)} aria-label={`Page ${page.lastPage}`}>
+        <Button variant="ghost">{page.lastPage}</Button>
+      </a>
+    )
+  }
+  {
+    page.url.next ? (
+      <a href={page.url.next}>
+        <Button variant="ghost">
+          <FaChevronRight aria-label="Next page" />
+        </Button>
+      </a>
+    ) : (
+      <Button variant="ghost" disabled aria-label="Next page">
+        <FaChevronRight />
+      </Button>
+    )
+  }
+</div>

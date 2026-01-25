@@ -1,0 +1,268 @@
+---
+import { SeriesNavigation } from '@components/post/SeriesNavigation';
+import { SeriesPostList } from '@components/post/SeriesPostList';
+import HomeSiderSegmented from '@components/ui/segmented/HomeSiderSegmented';
+import { HomeSiderSegmentType, HomeSiderType } from '@constants/enum';
+import { getAdjacentSeriesPosts, getSeriesPosts } from '@lib/content/posts';
+import { cn } from '@lib/utils';
+import type { BlogPost } from 'types/blog';
+import HomeInfo from './HomeInfo.astro';
+import { ScrollProgress } from './ScrollProgress';
+import { TableOfContents } from './TableOfContents/index';
+
+interface Props {
+  type?: HomeSiderType;
+  className?: string;
+  isDrawer?: boolean;
+  post?: BlogPost;
+}
+
+const { type = HomeSiderType.HOME, className, isDrawer = false, post } = Astro.props;
+const defaultSegmentType = type === HomeSiderType.POST ? HomeSiderSegmentType.DIRECTORY : HomeSiderSegmentType.INFO;
+
+// Get series posts
+const seriesPosts = post && type === HomeSiderType.POST ? await getSeriesPosts(post) : [];
+
+// Get previous and next posts
+const { prevPost, nextPost } =
+  post && type === HomeSiderType.POST ? await getAdjacentSeriesPosts(post) : { prevPost: null, nextPost: null };
+---
+
+<div
+  class={cn(
+    'page-home-sider shadow-home-sider sticky top-0 self-start flex min-w-64 max-w-64 flex-col tablet:hidden overflow-auto h-screen items-center px-2',
+    className,
+  )}
+  transition:name={isDrawer ? 'page-home-sider-drawer' : 'page-home-sider'}
+>
+  {
+    type === HomeSiderType.POST && (
+      <HomeSiderSegmented
+        client:only="react"
+        className="my-4 tablet:mb-0 flex w-full justify-between text-sm/6"
+        itemClass="grow"
+        defaultValue={defaultSegmentType}
+        id="inner-home-sider"
+      />
+    )
+  }
+
+  <sider-content
+    class="vertical-scrollbar scroll-gutter-stable w-full flex-1 overflow-x-hidden overflow-y-auto md:pt-2 md:pl-3"
+    data-type={type}
+    data-default-type={defaultSegmentType}
+  >
+    <div slot="info" class="sider-slot" data-slot-type="info">
+      <HomeInfo className={type === HomeSiderType.HOME ? 'pt-18 md:pt-0' : ''} />
+    </div>
+    <div slot="directory" class="sider-slot" data-slot-type="directory">
+      {type === HomeSiderType.POST && <TableOfContents client:load enableNumbering={post?.data.tocNumbering ?? true} />}
+    </div>
+    <div slot="series" class="sider-slot" data-slot-type="series">
+      {type === HomeSiderType.POST && <SeriesPostList client:load posts={seriesPosts} currentPostSlug={post?.slug} />}
+    </div>
+  </sider-content>
+
+  <!-- Inline script: immediately hide unnecessary content after DOM parsing to avoid flickering -->
+  <script is:inline data-astro-rerun>
+    (function () {
+      const container = document.querySelector('sider-content');
+      if (!container) return;
+
+      const defaultType = container.getAttribute('data-default-type') || 'info';
+      const slots = container.querySelectorAll('.sider-slot');
+
+      slots.forEach((slot) => {
+        const slotType = slot.getAttribute('data-slot-type');
+        if (slotType !== defaultType) {
+          slot.classList.add('hidden');
+        }
+      });
+    })();
+  </script>
+
+  {
+    type === HomeSiderType.POST && (
+      <SeriesNavigation client:load prevPost={prevPost} nextPost={nextPost} className="w-full px-2" />
+    )
+  }
+
+  <ScrollProgress client:only="react" className="mt-auto w-full rounded-full pt-4" />
+</div>
+
+<script>
+  import { HomeSiderType, HomeSiderSegmentType } from '@constants/enum';
+  import { homeSiderSegmentType } from '@store/app';
+
+  // Define SiderContent custom element
+  class SiderContent extends HTMLElement {
+    // Private property definitions
+    private infoContent: HTMLElement | null = null;
+    private directoryContent: HTMLElement | null = null;
+    private seriesContent: HTMLElement | null = null;
+    private pageType: string | null = null;
+    private defaultType: string | null = null;
+
+    constructor() {
+      super();
+
+      // Save initial content fragments
+      this.infoContent = this.querySelector('[slot="info"]');
+      this.directoryContent = this.querySelector('[slot="directory"]');
+      this.seriesContent = this.querySelector('[slot="series"]');
+
+      // Get current page type and default segment type from HTML attributes
+      this.pageType = this.getAttribute('data-type');
+      this.defaultType = this.getAttribute('data-default-type');
+
+      // Initialize
+      this.init();
+    }
+
+    init() {
+      // Ensure DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.initContent());
+      } else {
+        this.initContent();
+      }
+    }
+
+    initContent() {
+      // Home page directly displays HomeInfo (no animation)
+      if (this.pageType === HomeSiderType.HOME) {
+        this.showContent(HomeSiderSegmentType.INFO, true);
+      } else {
+        // Set initial value (no animation)
+        const initialType = (this.defaultType as HomeSiderSegmentType) || HomeSiderSegmentType.INFO;
+        homeSiderSegmentType.set(initialType);
+        this.showContent(initialType, true);
+
+        // Listen to state changes (with animation)
+        homeSiderSegmentType.listen((value) => {
+          this.showContent(value, false);
+        });
+      }
+    }
+
+    showContent(type: HomeSiderSegmentType, skipAnimation = false) {
+      // Determine target content
+      let targetContent: HTMLElement | null = null;
+      if (type === HomeSiderSegmentType.DIRECTORY) {
+        targetContent = this.directoryContent;
+      } else if (type === HomeSiderSegmentType.SERIES) {
+        targetContent = this.seriesContent;
+      } else {
+        targetContent = this.infoContent;
+      }
+
+      // If initializing or skipping animation, switch directly
+      if (skipAnimation) {
+        // Hide all first
+        [this.infoContent, this.directoryContent, this.seriesContent].forEach((content) => {
+          content?.classList.add('hidden');
+        });
+        // Then show target
+        targetContent?.classList.remove('hidden');
+        return;
+      }
+
+      // If already showing target content, return directly
+      if (targetContent && !targetContent.classList.contains('hidden')) {
+        return;
+      }
+
+      // Hide other content (add exit animation)
+      [this.infoContent, this.directoryContent, this.seriesContent].forEach((content) => {
+        if (content && content !== targetContent && !content.classList.contains('hidden')) {
+          content.classList.add('exiting');
+          setTimeout(() => {
+            content.classList.add('hidden');
+            content.classList.remove('exiting');
+          }, 200);
+        }
+      });
+
+      // Show target content (add enter animation)
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          targetContent?.classList.add('entering');
+          setTimeout(() => {
+            targetContent?.classList.remove('entering');
+          }, 200);
+        });
+      }
+    }
+  }
+
+  // Register custom element
+  customElements.define('sider-content', SiderContent);
+</script>
+
+<style>
+  /* Adjust z-index in Christmas mode to display decorative effects correctly */
+  :global(html.christmas) .page-home-sider {
+    z-index: 5;
+  }
+
+  sider-content {
+    position: relative;
+  }
+
+  .sider-slot {
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+  }
+
+  @media (768px >= width) {
+    .sider-slot {
+      position: relative;
+    }
+  }
+
+  .sider-slot.hidden {
+    display: none;
+  }
+
+  /* Default: no animation, for prefers-reduced-motion: reduce */
+  .sider-slot.entering,
+  .sider-slot.exiting {
+    animation: none;
+  }
+
+  /* Only apply animation when reduce-motion is not set */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes slide-in-from-right {
+      from {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slide-out-to-left {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(-12px);
+      }
+    }
+
+    .sider-slot.entering {
+      animation: slide-in-from-right 0.2s ease-in-out;
+    }
+
+    .sider-slot.exiting {
+      animation: slide-out-to-left 0.2s ease-in-out;
+    }
+  }
+</style>

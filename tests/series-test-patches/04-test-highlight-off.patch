@@ -1,0 +1,11 @@
+diff --git a/config/site.yaml b/config/site.yaml
+--- a/config/site.yaml
++++ b/config/site.yaml
+@@ -105,6 +105,7 @@ featuredSeries:
+    cover: /img/weekly_header.webp # Series page header image
+    enabled: true # Enable this series
+    icon: ri:newspaper-line # Navigation icon
++    highlightOnHome: false # Test: Disable highlight
+links: # Related links (optional)
+      github: https://github.com/jeet-u # (optional) GitHub repository
+      rss: /rss.xml # (optional) RSS subscription link

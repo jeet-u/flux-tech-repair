@@ -1,0 +1,509 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema
+# =============================================================================
+# Site Configuration
+# =============================================================================
+# This file contains all site-specific configurations.
+# Modify this file to customize your blog.
+# After changes, rebuild the site: docker compose up -d --build
+# =============================================================================
+
+# =============================================================================
+# Site Basic Information
+# =============================================================================
+site:
+  title: Microsoldering # Website name
+  alternate: Flux Tech Repair # Website English name used for footer, logo, @ handle, etc.
+  subtitle: Data Recovery Solutions # Website subtitle
+  name: Flux-Tech-Repair # Author name - please modify to your name
+  description: Logic Board Microsoldering # Website description
+  avatar: /img/avatar.webp # Website avatar
+  showLogo: true # Whether to display logo
+  author: Jeet-u # Author name - please modify to your name
+  url: http://localhost:4321/ # Site URL used for RSS and SEO
+  startYear: 2024 # Site establishment year
+  keywords: # SEO keywords
+    - blog
+    - Astro
+    - technology
+    - frontend
+    # Please add keywords based on your website content
+
+# =============================================================================
+# Category Map
+# Maps category names to URL-friendly English slugs
+# Example: 'essay' category URL becomes /categories/life
+# =============================================================================
+categoryMap:
+  # Primary categories
+  essay: life
+  notes: note
+  tools: tools
+  weekly: weekly
+  # Secondary categories (for nested paths)
+  frontend: front-end
+  # Add more as needed:
+  # reading: reading
+  # backend: back-end
+  # algorithm: algorithm
+  # project: project
+
+# =============================================================================
+# Featured Categories (Homepage)
+# Featured categories on homepage - displayed as category cards on the home page
+# =============================================================================
+# Field descriptions:
+#   link: Category link path, corresponding to the English slug in categoryMap
+#   label: Category name displayed on the card
+#   image: Cover image path (relative to public directory)
+#   description: Category description text displayed on the card
+# -----------------------------------------------------------------------------
+featuredCategories:
+  - link: life # Corresponds to essay: life in categoryMap
+    label: Essays
+    image: /img/cover/2.webp
+    description: Life records, random thoughts and essays
+  - link: note # Corresponds to notes: note in categoryMap
+    label: Notes
+    image: /img/cover/4.webp
+    description: Technical notes, learning notes
+  - link: note/front-end # Nested category: notes/frontend
+    label: Frontend
+    image: /img/cover/1.webp
+    description: Frontend technology related
+  - link: tools # Corresponds to tools: tools in categoryMap
+    label: Tools
+    image: /img/cover/11.webp
+    description: Tool usage, efficiency improvement
+
+# =============================================================================
+# Featured Series
+# Featured series functionality - for displaying regularly updated series content (supports multiple series)
+# =============================================================================
+# Field descriptions:
+#   slug: URL path (required), e.g., 'weekly' corresponds to /weekly
+#         Note: Cannot conflict with reserved routes, including: about, categories, tags, friends, posts, archives, api, _astro, rss.xml, sitemap.xml, robots.txt, favicon.ico, etc.
+#   categoryName: Corresponding category name (required, must exist in categoryMap)
+#   label: Short name displayed in sidebar/navigation (optional)
+#   fullName: Complete name displayed on the series page title (optional)
+#   description: Series introduction text, supports multi-line Markdown (optional)
+#   cover: Series page header image path, relative to public directory (optional)
+#   enabled: Whether to enable this series, set to false to disable (optional, default true)
+#   icon: Navigation icon, Iconify format such as 'ri:newspaper-line' (optional)
+#   highlightOnHome: Whether to highlight the latest article on the homepage (optional, default true, set to false to disable)
+#   links: Related links configuration (optional)
+# -----------------------------------------------------------------------------
+featuredSeries:
+  - slug: weekly # URL path: /weekly
+    categoryName: weekly # Must match the category name in categoryMap
+    label: My Weekly # Short name
+    fullName: My Tech Weekly # Complete name
+    description: | # Supports multi-line Markdown
+      This is an example configuration for the weekly/series articles feature.
+      You can use it to publish regularly updated series content, such as tech weeklies, reading note series, etc.
+      Set enabled: false to disable this feature.
+    cover: /img/weekly_header.webp # Series page header image
+    enabled: true # Enable this series
+    icon: ri:newspaper-line # Navigation icon
+    links: # Related links (optional)
+      github: https://github.com/jeet-u # (optional) GitHub repository
+      rss: /rss.xml # (optional) RSS subscription link
+      # chrome: https://chromewebstore.google.com/detail/your-extension-id # (optional) Browser extension
+      # docs: https://your-docs-url # (optional) Documentation link
+  # Example: Add a second series (uncomment to enable)
+  # - slug: reading # URL path: /reading
+  #   categoryName: reading
+  #   label: Reading Notes
+  #   fullName: My Reading Notes
+  #   description: Reading records and reflections
+  #   cover: /img/weekly_header.webp # Remember to add, this is just an example
+  #   enabled: true
+  #   icon: ri:book-read-line
+
+# =============================================================================
+# Social Links
+# Social links - displayed in footer and personal information area
+# =============================================================================
+# Field descriptions:
+#   url: Link address (emails require mailto: prefix)
+#   icon: Iconify icon identifier, format: "collection:icon-name"
+#         Icon search: https://icon-sets.iconify.design/ri/
+#   color: (optional) Icon color, hexadecimal format like '#191717'
+# -------------------------------------------------------------------------
+# To add a new platform: copy an existing configuration block and modify the key and field values
+# -----------------------------------------------------------------------------
+social:
+  github:
+    url: https://github.com/jeet-u # Replace with your GitHub link
+    icon: ri:github-fill # GitHub icon from Remix Icon
+    color: '#191717' # (optional) Icon color
+  email:
+    url: mailto:flux-tech-repair@proton.me # Replace with your email, must include mailto: prefix
+    icon: ri:mail-line
+    color: '#55acd5'
+  rss:
+    url: /rss.xml # Site RSS subscription address
+    icon: ri:rss-line
+    color: '#ff6600'
+  # -------------------------------------------------------------------------
+  # Below are more optional social platform configuration examples; uncomment and modify to enable:
+  # -------------------------------------------------------------------------
+  # twitter:
+  #   url: https://x.com/your-handle
+  #   icon: ri:twitter-fill
+  #   color: '#4b9ae4'
+  # bilibili:
+  #   url: https://space.bilibili.com/your-id
+  #   icon: ri:bilibili-fill
+  #   color: '#da708a'
+  # zhihu:
+  #   url: https://www.zhihu.com/people/your-id
+  #   icon: ri:zhihu-fill
+  #   color: '#1e88e5'
+  # music:
+  #   url: https://music.163.com/#/user/home?id=your-id
+  #   icon: ri:netease-cloud-music-line
+  #   color: '#e60026'
+
+# =============================================================================
+# Friends Links
+# Friends links page configuration - displays friend links list and application instructions
+# =============================================================================
+# intro: Page introduction text configuration
+#   title: Page title
+#   subtitle: Page subtitle
+#   applyTitle: Application section title
+#   applyDesc: Application instructions text
+#   exampleYaml: Application format example (YAML format)
+# data: Friend links list array
+#   - site: Site name
+#   - url: Site address
+#   - owner: Site owner nickname
+#   - desc: Site description/introduction
+#   - image: Avatar image URL
+#   - color: (optional) Card background color, hexadecimal format
+# -----------------------------------------------------------------------------
+friends:
+  intro:
+    title: Welcome # Page title
+    subtitle: Welcome to exchange friend links! # Page subtitle
+    applyTitle: Start the Connection # Application section title
+    applyDesc: Complete and submit the form below # Aplication instructions
+    exampleYaml: | # Application format example, will be displayed on the page
+      - site: Your Blog Name # Site name
+        url: https://your-blog.com/ # Site URL
+        owner: Your Nickname # Nickname
+        desc: Site Introduction # Site introduction
+        image: https://your-blog.com/avatar.jpg # Avatar link
+        color: "#ffc0cb" # Theme color (optional)
+  data: # Friend links list
+    - site: Flux-Tech Repair Blog
+      url: https://FluxTechRepair.com
+      owner: Jeetu
+      desc: Fullstack / Microsoldering / Motherboard / Web Technologies / Remote
+      image: '../img/avatar.webp'
+      color: '#1b384d'
+    - site: Example Blog A
+      url: https://example-a.com
+      owner: niea
+      desc: Specialized Technician in Advanced Hardware Repair
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Alice
+      color: '#FBC1CC'
+    - site: Example Blog B
+      url: https://example-b.com
+      owner: Bob
+      desc: Specialized Technician in Advanced Hardware Repair
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Bob
+      color: '#BEDCFF'
+    - site: Example Blog C
+      url: https://example-c.com
+      owner: Carol
+      desc: Specialized Technician in Advanced Hardware Repair
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Carol
+      color: '#c27c2f'
+
+# =============================================================================
+# Announcements
+# Announcement system - displays important notifications at the top of pages
+# =============================================================================
+# Field descriptions:
+#   id: Unique identifier for tracking read status (localStorage)
+#   title: Announcement title
+#   content: Announcement content text
+#   type: Type affecting style color (info/success/warning/error)
+#   priority: Priority number, higher values appear first
+#   color: (optional) Custom color, overrides type default color
+#   publishDate: Publish date, format 'YYYY-MM-DD'
+#   startDate: (optional) Start display time, ISO 8601 format
+#   endDate: (optional) End display time, auto-hidden after expiration
+#   link: (optional) Related links
+#     url: Link address
+#     text: Link text
+#     external: Open in new window (true/false)
+# -----------------------------------------------------------------------------
+# Uncomment examples below to enable announcements:
+# -----------------------------------------------------------------------------
+announcements:
+  # - id: welcome-2026 # Unique identifier
+  #   title: Happy New Year 2026! # Announcement title
+  #   content: Happy New Year! Thank you for your continued support~ # Announcement content
+  #   type: success # Type: info/success/warning/error
+  #   priority: 10 # Priority, higher values appear first
+  #   color: '#FF6B6B' # (optional) Custom color
+  #   publishDate: '2026-01-01' # Publish date
+  #   startDate: '2025-12-31T00:00:00+08:00' # (optional) Start display time
+  #   endDate: '2026-01-15T23:59:59+08:00' # (optional) End display time
+  #   link: # (optional) Related links
+  #     url: https://example.com
+  #     text: Learn more
+  #     external: true # Open in new window
+  # - id: maintenance-notice
+  #   title: System Maintenance Notice
+  #   content: System maintenance is planned for this weekend, access may be temporarily unavailable.
+  #   type: warning
+  #   priority: 8
+  #   publishDate: '2025-12-28'
+  # - id: site-update
+  #   title: Site Update Announcement
+  #   content: The announcement system has been upgraded and now supports multiple announcements displayed simultaneously!
+  #   type: info
+  #   priority: 5
+  #   color: '#6366F1'
+  #   publishDate: '2025-12-25'
+
+# =============================================================================
+# Content Processing Options
+# Content processing options - controls article rendering and interaction behavior
+# =============================================================================
+# Field descriptions:
+#   addBlankTarget: External links open in new window
+#   smoothScroll: Enable smooth scroll animation
+#   addHeadingLevel: Auto add heading level anchors
+#   enhanceCodeBlock: Enhance code block styling (line numbers, language tags, etc.)
+#   enableCodeCopy: Show code block copy button
+#   enableCodeFullscreen: Show code block fullscreen button
+#   enableLinkEmbed: Enable link card preview (parse OG info)
+#   enableTweetEmbed: Enable tweet embed display
+#   enableOGPreview: Enable Open Graph preview card
+#   previewCacheTime: Preview info cache time (seconds)
+#   lazyLoadEmbeds: Lazy load embed content (improves performance)
+# -----------------------------------------------------------------------------
+content:
+  addBlankTarget: true # External links open in new window
+  smoothScroll: true # Smooth scroll
+  addHeadingLevel: true # Heading anchors
+  enhanceCodeBlock: true # Enhance code blocks
+  enableCodeCopy: true # Code copy button
+  enableCodeFullscreen: true # Code fullscreen button
+  enableLinkEmbed: true # Link card preview
+  enableTweetEmbed: true # Tweet embed
+  enableOGPreview: true # OG preview card
+  previewCacheTime: 3600 # Preview cache time (seconds)
+  lazyLoadEmbeds: true # Lazy load embeds
+
+# =============================================================================
+# Navigation Routes
+# Navigation menu configuration - defines top navigation bar menu items
+# =============================================================================
+# Field descriptions:
+#   name: Menu item display name
+#   path: Link path (can be omitted if there are children, clicking expands submenu)
+#   icon: Iconify icon identifier, format "collection:icon-name"
+#   children: (optional) Submenu list, structure same as parent level
+# -----------------------------------------------------------------------------
+# Icon references:
+#   - Font Awesome 6: https://icon-sets.iconify.design/fa6-solid/
+#   - Remix Icon: https://icon-sets.iconify.design/ri/
+# -----------------------------------------------------------------------------
+navigation:
+  - name: Home # Menu display name
+    path: / # Link path
+    icon: ri:home-heart-fill # Icon
+  # - name: Reading Notes
+  #   path: /reading
+  - name: Weekly
+    path: /weekly
+    icon: ri:newspaper-line
+  - name: Articles # path can be omitted when there are submenus
+    icon: ri:quill-pen-ai-fill
+    children: # Submenu list
+      - name: Categories
+        path: /categories
+        icon: ri:grid-fill
+      - name: Tags
+        path: /tags
+        icon: fa6-solid:tags
+      - name: Archives
+        path: /archives
+        icon: ri:archive-2-fill
+  - name: Friends
+    path: /friends
+    icon: ri:links-line
+  - name: About
+    path: /about
+    icon: fa6-regular:circle-user
+
+# =============================================================================
+# Christmas/Seasonal Features
+# Christmas/seasonal decoration functionality - special visual effects during holidays
+# Consider adding theme.yaml in the future for management
+# =============================================================================
+# enabled: Master switch, set to false to disable all holiday effects
+# features: Individual function switches
+#   snowfall: Snowfall animation effect
+#   christmasColorScheme: Christmas theme color scheme
+#   christmasCoverDecoration: Cover Christmas decoration
+#   christmasHat: Christmas hat on avatar
+#   readingTimeSnow: Snowflake icon next to reading time
+# snowfall: Snowfall effect parameters (affects performance, recommend reducing on mobile)
+#   speed: Fall speed (0-1), larger is faster
+#   intensity: Snowflake density (0-1), larger is denser
+#   mobileIntensity: Mobile density, recommend lower than desktop
+#   maxLayers: Maximum layers, affects 3D effect
+#   maxIterations: Maximum iterations, affects snowflake count
+#   mobileMaxLayers: Mobile maximum layers
+#   mobileMaxIterations: Mobile maximum iterations
+
+
+# =============================================================================
+# Comment System
+# =============================================================================
+# provider: Comment system provider ('remark42' | 'giscus' | 'waline' | 'none')
+#           Set to 'none' or omit to disable comment system
+# Provider configurations:
+# -----------------------------------------------------------------------------
+#   remark42: Self-hosted lightweight comment system (https://remark42.com/docs/getting-started/installation/)
+#     host: https://comment.example.com/ # Remark42 server address
+#     siteId: your-site-id # Site ID
+#   giscus: Comment system based on GitHub Discussions (https://giscus.app) (intro: https://zhuanlan.zhihu.com/p/693434928)
+#     repo: GitHub repository name (owner/repo format)
+#     repoId: Repository ID (get from giscus.app)
+#     category: Discussion category name
+#     categoryId: Category ID (get from giscus.app)
+#     mapping: Mapping method ('pathname' | 'url' | 'title' | 'og:title'...)
+#     reactionsEnabled: Enable reactions (default: '1') # Only supports '0' | '1'
+#     emitMetadata: Send metadata (default: '0') # Only supports '0' | '1'
+#     inputPosition: Input box position ('top' | 'bottom', default: 'top')
+#     lang: Language (default: 'zh-CN')
+#     host: Custom giscus host (optional) 'https://giscus.app' | '...'
+#     theme: Theme (optional) 'light' | 'dark' | '...'
+#     loading: Loading method (optional) 'lazy' | 'eager';
+#   waline: Concise and secure comment system (https://waline.js.org)
+#     serverURL: Waline server address (required)
+#     lang: Language (default: 'zh-CN')
+#     dark: Dark mode support (default: 'html.dark')
+#           - String: CSS selector, enable dark mode when selector is active
+#           - true: Adaptive by device
+#           - false: Disable dark mode
+#     meta: Comment author info fields (default: ['nick', 'mail', 'link'])
+#     requiredMeta: Required fields (default: [])
+#     login: Login mode ('enable' | 'disable' | 'force', default: 'enable')
+#     wordLimit: Comment word limit
+#           - Single number: Maximum word count
+#           - Array [min, max]: Minimum and maximum word count
+#           - 0: No limit (default: 0)
+#     pageSize: Comments per page (default: 10)
+#     imageUploader: Image upload functionality (default: false)
+#     highlighter: Code highlighting (default: true)
+#     texRenderer: LaTeX rendering (default: false)
+#     search: Search functionality (default: false)
+#     reaction: Article reaction functionality
+#           - false: Disabled (default)
+#           - true: Enable default reactions
+#           - Array: Custom reaction icon URL list
+#     emoji: Emoji configuration
+#           - false: Disable emoji
+#           - true: Use default emoji
+#           - Array: Custom emoji list (default: ['//unpkg.com/@waline/emojis@1.2.0/weibo'])
+#     commentSorting: Comment sorting ('latest' | 'oldest' | 'hottest', default: 'latest')
+#     noCopyright: Hide footer copyright info (default: false)
+#     comment: Comment count statistics (default: true)
+#     pageview: Page view statistics (default: true)
+#     recaptchaV3Key: reCAPTCHA v3 Key (optional)
+#     turnstileKey: Cloudflare Turnstile Key (optional)
+#     locale: Custom language display (optional)
+comment:
+  provider: none  # 'remark42' | 'giscus' | 'waline' | 'none'
+  # remark42:
+  #   host: https://comment.example.com/
+  #   siteId: your-site-id
+  # giscus:
+  #   repo: username/repo              # GitHub repository name (owner/repo format)
+  #   repoId: R_kgDOxxxxxx             # Repository ID (get from giscus.app)
+  #   category: Announcements          # Discussion category name
+  #   categoryId: DIC_kwDOxxxxxx       # Category ID (get from giscus.app)
+  #   mapping: pathname                # Mapping method
+  #   reactionsEnabled: '1'            # Enable reactions ('0' | '1')
+  #   emitMetadata: '0'                # Send metadata ('0' | '1')
+  #   inputPosition: top               # Input box position ('top' | 'bottom')
+  #   lang: zh-CN                      # Language
+
+  # waline:
+  #   serverURL: https://your-waline.vercel.app  # Waline server address (required)
+  #   lang: zh-CN                      # Language (default: 'zh-CN')
+  #   dark: html.dark                  # Dark mode (default: 'html.dark')
+  #                                    # Optional: true (adaptive) | false (disabled) | CSS selector string
+  #   meta:                            # Comment author info fields (default: ['nick', 'mail', 'link'])
+  #     - nick
+  #     - mail
+  #     - link
+  #   requiredMeta:                    # Required fields (default: [])
+  #     - nick
+  #   login: enable                    # Login mode ('enable' | 'disable' | 'force', default: 'enable')
+  #   wordLimit: 0                     # Comment word limit (0 = unlimited, default: 0)
+  #                                    # Optional: single number | [min, max] array
+  #   pageSize: 10                     # Comments per page (default: 10)
+  #   imageUploader: false             # Image upload functionality (default: false)
+  #   highlighter: true                # Code highlighting (default: true)
+  #   texRenderer: false               # LaTeX rendering (default: false)
+  #   search: false                    # Search functionality (default: false)
+  #   reaction: false                  # Article reaction functionality (default: false)
+  #                                    # Optional: true | false | string array (custom reaction icons)
+  #   emoji: true                      # Emoji configuration (default: ['//unpkg.com/@waline/emojis@1.2.0/weibo'])
+  #                                    # Optional: true | false | string/object array
+  #                                    # Preset emoji packs: '//unpkg.com/@waline/emojis@1.2.0/weibo'
+  #                                    #                   '//unpkg.com/@waline/emojis@1.2.0/alus'
+  #                                    #                   '//unpkg.com/@waline/emojis@1.2.0/bilibili'
+  #                                    #                   '//unpkg.com/@waline/emojis@1.2.0/qq'
+  #                                    #                   '//unpkg.com/@waline/emojis@1.2.0/tieba'
+  #                                    #                   '//unpkg.com/@waline/emojis@1.2.0/tw-emoji'
+  #   commentSorting: latest           # Comment sorting ('latest' | 'oldest' | 'hottest', default: 'latest')
+  #   noCopyright: false               # Hide footer copyright info (default: false)
+  #   comment: true                    # Comment count statistics (default: true)
+  #   pageview: true                   # Page view statistics (default: true)
+  #   # recaptchaV3Key: ''             # reCAPTCHA v3 Key (optional)
+  #   # turnstileKey: ''               # Cloudflare Turnstile Key (optional)
+  #   # locale:                        # Custom language display (optional)
+  #   #   placeholder: 'Leave a message...' # Custom input placeholder text
+
+# =============================================================================
+# Analytics (Umami)
+# =============================================================================
+# id: Umami website ID
+# endpoint: Umami server address
+# enabled: Whether to enable analytics
+# -----------------------------------------------------------------------------
+analytics:
+  umami:
+    enabled: true
+    id: your-umami-id
+    endpoint: https://stats.example.com
+
+# =============================================================================
+# Christmas/Seasonal Features
+# =============================================================================
+christmas:
+  enabled: false # Master switch
+  # features: # Individual function switches
+  #   snowfall: true # Snowfall effect
+  #   christmasColorScheme: true # Christmas color scheme
+  #   christmasCoverDecoration: true # Cover decoration
+  #   christmasHat: true # Avatar Christmas hat
+  #   readingTimeSnow: true # Reading time snowflake icon
+  # snowfall: # Snowfall parameter configuration
+  #   speed: 0.5 # Fall speed (0-1)
+  #   intensity: 0.7 # Snowflake density (0-1)
+  #   mobileIntensity: 0.4 # Mobile density (recommend lower)
+  #   maxLayers: 6 # Maximum layers
+  #   maxIterations: 8 # Maximum iterations
+  #   mobileMaxLayers: 4 # Mobile maximum layers
+  #   mobileMaxIterations: 6 # Mobile maximum iterations

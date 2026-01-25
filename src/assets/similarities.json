@@ -1,0 +1,164 @@
+{
+  "getting-started": [
+    {
+      "slug": "astro-koharu-guide",
+      "title": "astro-koharu Usage Guide",
+      "similarity": 0.752
+    },
+    {
+      "slug": "theme-customization",
+      "title": "Theme Customization Guide",
+      "similarity": 0.675
+    },
+    {
+      "slug": "markdown-features",
+      "title": "Markdown Enhanced Features Demo",
+      "similarity": 0.649
+    },
+    {
+      "slug": "toc-no-numbering",
+      "title": "Table of Contents Without Numbering Example",
+      "similarity": 0.513
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "similarity": 0.425
+    }
+  ],
+  "astro-koharu-guide": [
+    {
+      "slug": "getting-started",
+      "title": "Welcome to astro-koharu",
+      "similarity": 0.752
+    },
+    {
+      "slug": "markdown-features",
+      "title": "Markdown Enhanced Features Demo",
+      "similarity": 0.735
+    },
+    {
+      "slug": "theme-customization",
+      "title": "Theme Customization Guide",
+      "similarity": 0.7
+    },
+    {
+      "slug": "toc-no-numbering",
+      "title": "Table of Contents Without Numbering Example",
+      "similarity": 0.561
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "similarity": 0.527
+    }
+  ],
+  "toc-no-numbering": [
+    {
+      "slug": "theme-customization",
+      "title": "Theme Customization Guide",
+      "similarity": 0.564
+    },
+    {
+      "slug": "astro-koharu-guide",
+      "title": "astro-koharu Usage Guide",
+      "similarity": 0.561
+    },
+    {
+      "slug": "markdown-features",
+      "title": "Markdown Enhanced Features Demo",
+      "similarity": 0.541
+    },
+    {
+      "slug": "getting-started",
+      "title": "Welcome to astro-koharu",
+      "similarity": 0.513
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "similarity": 0.364
+    }
+  ],
+  "markdown-features": [
+    {
+      "slug": "astro-koharu-guide",
+      "title": "astro-koharu Usage Guide",
+      "similarity": 0.735
+    },
+    {
+      "slug": "getting-started",
+      "title": "Welcome to astro-koharu",
+      "similarity": 0.649
+    },
+    {
+      "slug": "theme-customization",
+      "title": "Theme Customization Guide",
+      "similarity": 0.611
+    },
+    {
+      "slug": "toc-no-numbering",
+      "title": "Table of Contents Without Numbering Example",
+      "similarity": 0.541
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "similarity": 0.406
+    }
+  ],
+  "hello-world": [
+    {
+      "slug": "astro-koharu-guide",
+      "title": "astro-koharu Usage Guide",
+      "similarity": 0.527
+    },
+    {
+      "slug": "theme-customization",
+      "title": "Theme Customization Guide",
+      "similarity": 0.462
+    },
+    {
+      "slug": "getting-started",
+      "title": "Welcome to astro-koharu",
+      "similarity": 0.425
+    },
+    {
+      "slug": "markdown-features",
+      "title": "Markdown Enhanced Features Demo",
+      "similarity": 0.406
+    },
+    {
+      "slug": "toc-no-numbering",
+      "title": "Table of Contents Without Numbering Example",
+      "similarity": 0.364
+    }
+  ],
+  "theme-customization": [
+    {
+      "slug": "astro-koharu-guide",
+      "title": "astro-koharu Usage Guide",
+      "similarity": 0.7
+    },
+    {
+      "slug": "getting-started",
+      "title": "Welcome to astro-koharu",
+      "similarity": 0.675
+    },
+    {
+      "slug": "markdown-features",
+      "title": "Markdown Enhanced Features Demo",
+      "similarity": 0.611
+    },
+    {
+      "slug": "toc-no-numbering",
+      "title": "Table of Contents Without Numbering Example",
+      "similarity": 0.564
+    },
+    {
+      "slug": "hello-world",
+      "title": "Hello World",
+      "similarity": 0.462
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+/* Waline comment system theme - matching blog primary color
+ * override global styles
+ * Waline comment system theme styles
+ * Customization guide: https://waline.js.org/guide/features/style.html
+ * CSS variables reference: https://waline.js.org/reference/client/style.html
+ */
+:root body {
+  /* === Theme Colors === */
+  /* Primary theme color for buttons, links, and interactive elements */
+  --waline-theme-color: #e9546b;
+  /* Active state color for hover and focus */
+  --waline-active-color: #ed788c;
+}
+
+/* === Dark Mode === */
+html.dark body {
+  /* Theme colors - use brighter values in dark mode to keep contrast */
+  --waline-theme-color: #ed788c;
+  --waline-active-color: #f09aab;
+
+  --waline-color: #8e8e8e;
+  --waline-disable-bg-color: hsl(0, 0%, 70%);
+  --waline-info-bg-color: #8e8e8e;
+  --waline-info-color: #fff;
+}
+
+/* === Additional Styles === */
+.wl-comment {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

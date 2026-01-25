@@ -1,0 +1,13 @@
+diff --git a/config/site.yaml b/config/site.yaml
+--- a/config/site.yaml
++++ b/config/site.yaml
+@@ -95,7 +95,8 @@ featuredCategories:
+ #   links: Related links configuration (optional)
+ # -----------------------------------------------------------------------------
+ featuredSeries:
+-  - slug: weekly # URL path: /weekly
++  # Test reserved route conflict - should trigger build error
++  - slug: categories # ❌ This is a reserved route, should error!
+     categoryName: 周刊 # Must match category name in categoryMap
+     label: 我的周刊 # Short name
+     fullName: 我的技术周刊 # Full name

@@ -1,0 +1,12 @@
+diff --git a/config/site.yaml b/config/site.yaml
+--- a/config/site.yaml
++++ b/config/site.yaml
+@@ -103,7 +103,7 @@ featuredSeries:
+       You can use it to publish regularly updated series content, such as tech digests, reading notes series, etc.
+       Set enabled: false to disable this feature.
+     cover: /img/weekly_header.webp # Series page header image
+-    enabled: true # Enable this series
++    enabled: false # Disable this series (testing)
+     icon: ri:newspaper-line # Navigation icon
+     links: # Related links (optional)
+       github: https://github.com/jeet-u # (optional) GitHub repository

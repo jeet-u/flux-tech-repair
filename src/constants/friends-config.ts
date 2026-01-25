@@ -1,0 +1,16 @@
+// Import YAML config directly - processed by @rollup/plugin-yaml
+
+import type { FriendLink, FriendsIntro } from '@lib/config/types';
+import yamlConfig from '../../config/site.yaml';
+
+// Re-export type for backwards compatibility
+export type { FriendLink };
+
+export const friendsData: FriendLink[] = yamlConfig.friends?.data ?? [];
+
+export const friendsIntro: FriendsIntro = yamlConfig.friends?.intro ?? {
+  title: 'Welcome',
+  subtitle: '',
+  applyTitle: 'Start the Connection',
+  applyDesc: 'Complete and submit the form below',
+};

@@ -1,0 +1,161 @@
+/* TableOfContents component styles */
+.toc-container {
+  /* Custom scrollbar styles */
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 2px;
+}
+
+.toc-container::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* ============================================
+   CSS Counter: Heading Numbering System
+   Supports all H1-H6 levels, handles mixed usage scenarios
+   ============================================ */
+
+/* 1. Initialize counters: reset root-level counters in TOC root container */
+.toc-container {
+  counter-reset: heading-h2;
+}
+
+/* 2. Each heading link increments its own counter and resets all sub-level counters */
+
+/* H1: No numbering (usually article title, no numbering needed) */
+.heading-link[data-level="1"] {
+  counter-reset: heading-h2;
+}
+
+.heading-link[data-level="1"]::before {
+  content: none;
+}
+
+/* H2: "1. " (as root level) */
+.heading-link[data-level="2"] {
+  counter-increment: heading-h2;
+  counter-reset: heading-h3;
+}
+
+.heading-link[data-level="2"]::before {
+  content: counter(heading-h2) ". ";
+}
+
+/* H3: "1.1. " */
+.heading-link[data-level="3"] {
+  counter-increment: heading-h3;
+  counter-reset: heading-h4;
+}
+
+.heading-link[data-level="3"]::before {
+  content: counter(heading-h2) "." counter(heading-h3) ". ";
+}
+
+/* H4: "1.1.1. " */
+.heading-link[data-level="4"] {
+  counter-increment: heading-h4;
+  counter-reset: heading-h5;
+}
+
+.heading-link[data-level="4"]::before {
+  content: counter(heading-h2) "." counter(heading-h3) "." counter(heading-h4) ". ";
+}
+
+/* H5: "1.1.1.1. " */
+.heading-link[data-level="5"] {
+  counter-increment: heading-h5;
+  counter-reset: heading-h6;
+}
+
+.heading-link[data-level="5"]::before {
+  content: counter(heading-h2) "." counter(heading-h3) "." counter(heading-h4) "." counter(heading-h5) ". ";
+}
+
+/* H6: "1.1.1.1.1. " */
+.heading-link[data-level="6"] {
+  counter-increment: heading-h6;
+}
+
+.heading-link[data-level="6"]::before {
+  content: counter(heading-h2) "." counter(heading-h3) "." counter(heading-h4) "." counter(heading-h5) "." counter(heading-h6)
+    ". ";
+}
+
+/* 4. Numbering style: fixed-width digits, right spacing, soft color */
+.heading-link::before {
+  display: inline-block;
+  margin-right: 0.25rem; /* 4px spacing */
+  font-variant-numeric: tabular-nums; /* Fixed-width digit alignment */
+  color: hsl(var(--muted-foreground));
+  transition: color 200ms;
+}
+
+/* 5. Active state: numbering also changes to theme color */
+.heading-link.text-primary::before {
+  color: hsl(var(--primary));
+}
+
+/* 6. Disable numbering: hide all numbering via .toc-no-numbering class */
+.toc-no-numbering .heading-link::before {
+  display: none;
+}
+
+/* Smooth transition animation for TOC items */
+.toc-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: hsl(var(--primary) / 0.1);
+  transition: width 0.2s ease;
+  z-index: -1;
+}
+
+.toc-item:hover::before {
+  width: 100%;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 1px;
+  background-color: hsl(var(--primary));
+  vertical-align: text-bottom;
+  animation: cursor-blink 0.6s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+  }
+}
