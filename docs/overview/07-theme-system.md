@@ -2,7 +2,7 @@
 
 ## Overview
 
-astro-koharu implements complete dark/light theme switching functionality, including:
+jeet-u implements complete dark/light theme switching functionality, including:
 
 1. **FOUC Prevention**: Prevent theme flickering during page load
 2. **localStorage Persistence**: Remember user preferences

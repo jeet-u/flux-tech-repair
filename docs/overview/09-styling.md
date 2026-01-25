@@ -2,7 +2,7 @@
 
 ## Overview
 
-astro-koharu uses **Tailwind CSS 4.x** as the styling framework, combined with the **design token system** to implement consistent visual design.
+jeet-u uses **Tailwind CSS 4.x** as the styling framework, combined with the **design token system** to implement consistent visual design.
 
 ### Styling System Architecture
 

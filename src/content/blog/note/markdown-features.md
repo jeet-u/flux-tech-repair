@@ -3,7 +3,7 @@ title: Markdown Enhanced Features Demo
 link: markdown-features
 catalog: true
 date: 2024-01-02 00:00:00
-description: Demonstrates all Markdown enhanced features supported by astro-koharu, including syntax highlighting, Mermaid diagrams, GFM tables, and more.
+description: Demonstrates all Markdown enhanced features supported by jeet-u, including syntax highlighting, Mermaid diagrams, GFM tables, and more.
 tags:
   - Markdown
   - Tutorial
@@ -11,11 +11,11 @@ categories:
   - notes
 ---
 
-This article demonstrates all Markdown enhanced features supported by astro-koharu.
+This article demonstrates all Markdown enhanced features supported by jeet-u.
 
 ## Link Embedding
 
-astro-koharu supports automatic embedding of standalone links, including Tweet and general link previews.
+jeet-u supports automatic embedding of standalone links, including Tweet and general link previews.
 
 ### Tweet Embedding Test
 
@@ -66,7 +66,7 @@ Supports syntax highlighting for multiple programming languages and automaticall
 function greet(name) {
   console.log(`Hello, ${name}!`);
   return {
-    message: "Welcome to astro-koharu",
+    message: "Welcome to jeet-u",
     timestamp: Date.now(),
   };
 }
@@ -132,7 +132,7 @@ echo "Server is running at http://localhost:4321"
 
 ## Task Lists
 
-- [x] Install astro-koharu
+- [x] Install jeet-u
 - [x] Configure site information
 - [ ] Write first article
 - [ ] Deploy to Vercel
@@ -181,13 +181,13 @@ pie title Blog Content Distribution
 - _Italic text_
 - ~~Strikethrough~~
 - `Inline code`
-- [Link text](https://github.com/cosZone/astro-koharu)
+- [Link text](https://github.com/cosZone/jeet-u)
 
 ## Blockquotes
 
 > This is a blockquote.
 >
-> astro-koharu makes blogging simple and elegant.
+> jeet-u makes blogging simple and elegant.
 
 ## Heading Levels
 
@@ -232,4 +232,4 @@ Images automatically apply LQIP (Low Quality Image Placeholder) effect:
 
 ## Summary
 
-The above demonstrates the main Markdown features supported by astro-koharu. For more features, please refer to the [Usage Guide](/post/astro-koharu-guide).
+The above demonstrates the main Markdown features supported by jeet-u. For more features, please refer to the [Usage Guide](/post/jeet-u-guide).

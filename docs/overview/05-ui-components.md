@@ -2,7 +2,7 @@
 
 ## Design Philosophy
 
-The UI component library in astro-koharu follows the design philosophy of **shadcn/ui**:
+The UI component library in jeet-u follows the design philosophy of **shadcn/ui**:
 
 1. **Components as Code**: Components are placed directly in the project and fully customizable
 2. **CVA Variant System**: Use class-variance-authority to manage style variants

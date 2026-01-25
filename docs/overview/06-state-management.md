@@ -2,7 +2,7 @@
 
 ## Why Nanostores?
 
-astro-koharu uses **Nanostores** for global state management instead of more popular Redux or Zustand. Here's why:
+jeet-u uses **Nanostores** for global state management instead of more popular Redux or Zustand. Here's why:
 
 | Feature | Nanostores | Redux | Zustand |
 |---------|-----------|-------|----------|\n| Size | ~1KB | ~7KB | ~3KB |

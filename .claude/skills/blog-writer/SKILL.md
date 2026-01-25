@@ -1,11 +1,11 @@
 ---
 name: blog-writer
-description: Help users create new blog posts according to astro-koharu blog standards. Automatically generates correct frontmatter structure, selects appropriate category paths, and provides Markdown content framework suggestions. Use cases: write a post, create new article, write article, write blog, new post, create blog post.
+description: Help users create new blog posts according to jeet-u blog standards. Automatically generates correct frontmatter structure, selects appropriate category paths, and provides Markdown content framework suggestions. Use cases: write a post, create new article, write article, write blog, new post, create blog post.
 ---
 
 # Blog Writer Skill
 
-Help users create new blog posts according to astro-koharu blog standards.
+Help users create new blog posts according to jeet-u blog standards.
 
 ## Your Task
 

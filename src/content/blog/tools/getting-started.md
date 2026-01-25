@@ -71,6 +71,6 @@ Recommended to deploy with Vercel in one click:
 ## Learn More
 
 - Check out [Markdown Features Demo](/post/markdown-features) to learn about all Markdown enhancements
-- Check out [User Guide](/post/astro-koharu-guide) for detailed configuration instructions
+- Check out [User Guide](/post/jeet-u-guide) for detailed configuration instructions
 
 Enjoy using it!

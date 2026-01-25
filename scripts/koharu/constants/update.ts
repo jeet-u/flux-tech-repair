@@ -2,7 +2,7 @@
 export const UPSTREAM_REMOTE = 'upstream';
 
 /** Upstream repository URL */
-export const UPSTREAM_URL = 'https://github.com/cosZone/astro-koharu.git';
+export const UPSTREAM_URL = 'https://github.com/cosZone/jeet-u.git';
 
 /** Main branch name */
 export const MAIN_BRANCH = 'main';

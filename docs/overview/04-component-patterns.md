@@ -2,7 +2,7 @@
 
 ## Component Type Selection
 
-In astro-koharu, components are divided into two categories: **Astro components** and **React components**. Which type to choose depends on the component's functional requirements.
+In jeet-u, components are divided into two categories: **Astro components** and **React components**. Which type to choose depends on the component's functional requirements.
 
 ### Selection Guide
 

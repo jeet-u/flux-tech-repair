@@ -17,7 +17,7 @@ const args = parseArgs();
 // Display help
 if (args.help) {
   console.log(`
-koharu - astro-koharu CLI
+koharu - jeet-u CLI
 
 Usage:
   pnpm koharu              Interactive main menu
@@ -119,7 +119,7 @@ function KoharuApp() {
         <Text bold color="magenta">
           koharu
         </Text>
-        <Text dimColor> - astro-koharu CLI</Text>
+        <Text dimColor> - jeet-u CLI</Text>
       </Box>
 
       {mode === 'menu' && (

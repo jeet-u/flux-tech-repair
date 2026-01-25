@@ -16,7 +16,7 @@ This article demonstrates how to disable automatic numbering for table of conten
 
 ## Table of Contents Numbering Feature
 
-By default, astro-koharu uses CSS counters to automatically add hierarchical numbering to the table of contents, such as:
+By default, jeet-u uses CSS counters to automatically add hierarchical numbering to the table of contents, such as:
 
 - 1. Chapter One
   - 1.1. Section One

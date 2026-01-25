@@ -3,7 +3,7 @@ title: Theme Customization Guide
 link: theme-customization
 catalog: true
 date: 2024-01-03 00:00:00
-description: Introduction to customizing the appearance of astro-koharu, including color schemes, layout, and animation effects.
+description: Introduction to customizing the appearance of jeet-u, including color schemes, layout, and animation effects.
 tags:
   - Customization
   - CSS
@@ -13,7 +13,7 @@ categories:
 cover: /img/cover/3.webp
 ---
 
-This article introduces how to customize the appearance and style of astro-koharu.
+This article introduces how to customize the appearance and style of jeet-u.
 
 ## Nested Categories Explanation
 

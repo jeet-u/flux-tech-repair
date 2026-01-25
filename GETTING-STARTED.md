@@ -1,6 +1,6 @@
 # Quick Start
 
-Welcome to the astro-koharu blog theme! This guide will help you get your blog up and running in 5 minutes.
+Welcome to the jeet-u blog theme! This guide will help you get your blog up and running in 5 minutes.
 
 ## 1. Environment Setup
 
@@ -21,8 +21,8 @@ npm install -g pnpm
 
 ```bash
 # Method 1: Clone the repository
-git clone https://github.com/cosZone/astro-koharu.git
-cd astro-koharu
+git clone https://github.com/cosZone/jeet-u.git
+cd jeet-u
 
 # Method 2: Use GitHub template (recommended)
 # Click the "Use this template" button on the repository page
@@ -144,7 +144,7 @@ categories:
 
 ### Vercel One-Click Deploy (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/astro-koharu&project-name=astro-koharu&repository-name=astro-koharu)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/jeet-u&project-name=jeet-u&repository-name=jeet-u)
 
 1. Click the button above
 2. Sign in with your GitHub account
@@ -185,7 +185,7 @@ git commit -m "chore: update generated assets"
 ./docker/rebuild.sh
 ```
 
-For detailed instructions, see the [Docker deployment section in the usage guide](./src/content/blog/tools/astro-koharu-guide.md).
+For detailed instructions, see the [Docker deployment section in the usage guide](./src/content/blog/tools/jeet-u-guide.md).
 
 ## 6. Advanced Features
 
@@ -278,7 +278,7 @@ If you prefer manual updates:
 pnpm koharu backup --full
 
 # 2. Add upstream repository (only once)
-git remote add upstream https://github.com/cosZone/astro-koharu.git
+git remote add upstream https://github.com/cosZone/jeet-u.git
 
 # 3. Fetch latest code
 git fetch upstream
@@ -321,13 +321,13 @@ After updating, check the following:
 
 - If you modified theme source code (e.g., component styles), merge conflicts may occur and need manual resolution
 - Consider using `git stash` or creating a branch before updating to save local changes
-- For major version updates, check [Release Notes](https://github.com/cosZone/astro-koharu/releases) for breaking changes
+- For major version updates, check [Release Notes](https://github.com/cosZone/jeet-u/releases) for breaking changes
 
 ## Get Help
 
-- 📖 [Detailed Usage Guide](./src/content/blog/tools/astro-koharu-guide.md)
-- 🐛 [Submit an Issue](https://github.com/cosZone/astro-koharu/issues)
-- ⭐ [GitHub Repository](https://github.com/cosZone/astro-koharu)
+- 📖 [Detailed Usage Guide](./src/content/blog/tools/jeet-u-guide.md)
+- 🐛 [Submit an Issue](https://github.com/cosZone/jeet-u/issues)
+- ⭐ [GitHub Repository](https://github.com/cosZone/jeet-u)
 
 ---
 

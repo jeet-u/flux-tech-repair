@@ -2,7 +2,7 @@
 
 ## Overview
 
-astro-koharu uses **Motion** (the successor to Framer Motion) as its animation library, combined with the design token system to provide a consistent animation experience.
+jeet-u uses **Motion** (the successor to Framer Motion) as its animation library, combined with the design token system to provide a consistent animation experience.
 
 ### Animation Hierarchy
 

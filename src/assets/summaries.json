@@ -1,19 +1,19 @@
 {
   "getting-started": {
-    "title": "Welcome to astro-koharu",
-    "summary": "astro-koharu is a modern blog theme built on Astro 5.x, featuring a cute pink-blue color scheme with high performance, responsive design, and rich features such as multi-level categories, tags, table of contents, and search. It supports quick configuration and deployment, with one-click deployment recommended using Vercel."
+    "title": "Welcome to jeet-u",
+    "summary": "jeet-u is a modern blog theme built on Astro 5.x, featuring a cute pink-blue color scheme with high performance, responsive design, and rich features such as multi-level categories, tags, table of contents, and search. It supports quick configuration and deployment, with one-click deployment recommended using Vercel."
   },
-  "astro-koharu-guide": {
-    "title": "astro-koharu User Guide",
-    "summary": "This is a comprehensive user guide for the astro-koharu blog system, introducing a modern static blog system built on Astro 5.x with support for Markdown enhancements, multi-level categories and tags, weekly series, full-site search, reading progress bar, theme switching, LQIP image placeholders, and other core features. It provides complete documentation from configuration to article creation, feature usage, and best practices. The system emphasizes performance and user experience through AI summaries, semantic recommendations, and holiday-themed effects to enhance content readability and interactivity."
+  "jeet-u-guide": {
+    "title": "jeet-u User Guide",
+    "summary": "This is a comprehensive user guide for the jeet-u blog system, introducing a modern static blog system built on Astro 5.x with support for Markdown enhancements, multi-level categories and tags, weekly series, full-site search, reading progress bar, theme switching, LQIP image placeholders, and other core features. It provides complete documentation from configuration to article creation, feature usage, and best practices. The system emphasizes performance and user experience through AI summaries, semantic recommendations, and holiday-themed effects to enhance content readability and interactivity."
   },
   "toc-no-numbering": {
     "title": "Example of Disabling Table of Contents Numbering",
-    "summary": "This article demonstrates how to disable automatic numbering of the table of contents in astro-koharu by setting `tocNumbering: false`. This feature uses CSS counters for zero runtime overhead and is suitable for essays, articles with existing numbering, or loosely structured content, allowing flexible use based on personal preference or content requirements."
+    "summary": "This article demonstrates how to disable automatic numbering of the table of contents in jeet-u by setting `tocNumbering: false`. This feature uses CSS counters for zero runtime overhead and is suitable for essays, articles with existing numbering, or loosely structured content, allowing flexible use based on personal preference or content requirements."
   },
   "markdown-features": {
     "title": "Markdown Enhanced Features Demo",
-    "summary": "astro-koharu supports rich Markdown enhancements including automatic embedding of Twitter/X links and OG previews for general links, code highlighting, Mermaid diagrams, various text styles, heading levels, lists, and image handling. Through simple syntax and intelligent rendering, it makes blog creation more efficient and beautiful."
+    "summary": "jeet-u supports rich Markdown enhancements including automatic embedding of Twitter/X links and OG previews for general links, code highlighting, Mermaid diagrams, various text styles, heading levels, lists, and image handling. Through simple syntax and intelligent rendering, it makes blog creation more efficient and beautiful."
   },
   "hello-world": {
     "title": "Hello World",
@@ -21,6 +21,6 @@
   },
   "theme-customization": {
     "title": "Theme Customization Guide",
-    "summary": "This article provides detailed instructions on customizing the appearance and style of the astro-koharu blog, including setting up hierarchical structures through nested categories, customizing color schemes using CSS variables, configuring Tailwind themes and layouts, adjusting responsive breakpoints and animation effects, and supporting optional features like Christmas effects. Users can achieve personalized blog styles by modifying relevant configuration files."
+    "summary": "This article provides detailed instructions on customizing the appearance and style of the jeet-u blog, including setting up hierarchical structures through nested categories, customizing color schemes using CSS variables, configuring Tailwind themes and layouts, adjusting responsive breakpoints and animation effects, and supporting optional features like Christmas effects. Users can achieve personalized blog styles by modifying relevant configuration files."
   }
 }

@@ -2,7 +2,7 @@
 export type BackupType = 'full' | 'basic';
 
 /** Manifest application name */
-export const MANIFEST_NAME = 'astro-koharu-backup';
+export const MANIFEST_NAME = 'jeet-u-backup';
 
 /** Manifest filename */
 export const MANIFEST_FILENAME = 'manifest.json';

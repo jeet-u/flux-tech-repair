@@ -1,5 +1,5 @@
 # =============================================================================
-# astro-koharu Dockerfile
+# jeet-u Dockerfile
 # Multi-stage build for static site generation with nginx
 # =============================================================================
 

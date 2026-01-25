@@ -1,9 +1,9 @@
 ---
 title: Device Repair Documentation System Guide
-link: astro-koharu-guide
+link: jeet-u-guide
 catalog: true
 date: 2025-12-29 21:55:00
-description: Complete user guide for astro-koharu repair documentation system, including setup, configuration, repair procedures, troubleshooting guides, and advanced features for mobile device, microelectronics, and component repair technicians
+description: Complete user guide for jeet-u repair documentation system, including setup, configuration, repair procedures, troubleshooting guides, and advanced features for mobile device, microelectronics, and component repair technicians
 tags:
   - Astro
   - Repair
@@ -12,7 +12,7 @@ categories:
   - tools 
 ---
 
-A complete user guide for the astro-koharu repair documentation system to help technicians organize repair procedures, share troubleshooting guides, and manage repair databases efficiently.
+A complete user guide for the jeet-u repair documentation system to help technicians organize repair procedures, share troubleshooting guides, and manage repair databases efficiently.
 
 https://github.com/jeet-u
 
@@ -20,7 +20,7 @@ https://github.com/jeet-u
 
 ## Project Overview
 
-astro-koharu is a modern repair documentation system built on Astro 5.x, designed for organizing repair procedures, troubleshooting guides, and technical knowledge. Originally adapted from a blog platform, it's now optimized for repair technicians working with mobile devices, microelectronics, and component-level repair. Feel free to [fork](https://github.com/cosZone/astro-koharu/fork) it to create your own repair knowledge base.
+jeet-u is a modern repair documentation system built on Astro 5.x, designed for organizing repair procedures, troubleshooting guides, and technical knowledge. Originally adapted from a blog platform, it's now optimized for repair technicians working with mobile devices, microelectronics, and component-level repair. Feel free to [fork](https://github.com/cosZone/jeet-u/fork) it to create your own repair knowledge base.
 
 **Core Features for Repair Technicians:**
 
@@ -43,8 +43,8 @@ astro-koharu is a modern repair documentation system built on Astro 5.x, designe
 
 ```bash
 # Clone the project
-git clone https://github.com/cosZone/astro-koharu.git
-cd astro-koharu
+git clone https://github.com/cosZone/jeet-u.git
+cd jeet-u
 
 # Install dependencies
 pnpm install
@@ -63,7 +63,7 @@ pnpm preview
 
 Deploy your repair documentation system with one click using Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/astro-koharu&project-name=astro-koharu&repository-name=astro-koharu)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/cosZone/jeet-u&project-name=jeet-u&repository-name=jeet-u)
 
 ## Basic Configuration
 
@@ -319,7 +319,7 @@ Repair procedure description priority: custom `description` > AI auto-summary > 
 
 ## Repair Category System
 
-The astro-koharu system supports flexible repair procedure categorization for technicians:
+The jeet-u system supports flexible repair procedure categorization for technicians:
 
 ## Single-Level Repair Categories
 
@@ -1242,7 +1242,7 @@ analytics:
 ## Directory Structure
 
 ```plain
-astro-koharu/
+jeet-u/
 ├── src/
 │   ├── components/      # Components
 │   │   ├── common/      # Common components (error boundaries, etc.)
@@ -1317,7 +1317,7 @@ pnpm change           # Generate CHANGELOG.md (based on git-cliff)
 
 ## Docker Deployment for Self-Hosted Repair Knowledge Base
 
-astro-koharu supports containerized deployment via Docker, suitable for self-hosting scenarios.
+jeet-u supports containerized deployment via Docker, suitable for self-hosting scenarios.
 
 **Quick Start:**
 
@@ -1496,7 +1496,7 @@ git commit -m "merge: resolve conflicts"
 | Check workspace state  | `git status --porcelain`                                              |
 | Get current branch     | `git rev-parse --abbrev-ref HEAD`                                     |
 | Check upstream         | `git remote -v`                                                       |
-| Add upstream           | `git remote add upstream https://github.com/cosZone/astro-koharu.git` |
+| Add upstream           | `git remote add upstream https://github.com/cosZone/jeet-u.git` |
 | Fetch updates          | `git fetch upstream`                                                  |
 | View new commits count | `git rev-list --left-right --count HEAD...upstream/main`              |
 | View new commits list  | `git log HEAD..upstream/main --pretty=format:"%h %s %ar %an"`         |
@@ -1611,7 +1611,7 @@ import { fadeIn } from "@constants/anim/variants";
 
 ## Technology Stack Differences
 
-Comparison of technical improvements between Hexo/Shoka and astro-koharu:              | Hexo + Shoka   | astro-koharu        |
+Comparison of technical improvements between Hexo/Shoka and jeet-u:              | Hexo + Shoka   | jeet-u        |
 | ------------------- | -------------- | ------------------- |
 | Framework           | Hexo (Node.js) | Astro 5.x           |
 | Template Engine     | EJS/Pug        | Astro + React       |
@@ -1904,9 +1904,9 @@ link: screen-replacement-iphone-12
 
 ## Changelog
 
-See [CHANGELOG.md](https://github.com/cosZone/astro-koharu/blob/main/CHANGELOG.md) for version history.
+See [CHANGELOG.md](https://github.com/cosZone/jeet-u/blob/main/CHANGELOG.md) for version history.
 
 ---
 
-If you have any questions or suggestions, please feel free to provide feedback in [GitHub Issues](https://github.com/cosZone/astro-koharu/issues).
+If you have any questions or suggestions, please feel free to provide feedback in [GitHub Issues](https://github.com/cosZone/jeet-u/issues).
 

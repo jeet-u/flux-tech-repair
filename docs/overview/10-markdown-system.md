@@ -1,6 +1,6 @@
 # Markdown Parsing and Styling System
 
-This document provides detailed information about Markdown parsing, rendering, and styling system in the astro-koharu blog project.
+This document provides detailed information about Markdown parsing, rendering, and styling system in the jeet-u blog project.
 
 ## Table of Contents
 
@@ -519,7 +519,7 @@ const jsonLd = {
 
 ## Summary
 
-The Markdown system in astro-koharu provides powerful and elegant content rendering capabilities through the following tech stack:
+The Markdown system in jeet-u provides powerful and elegant content rendering capabilities through the following tech stack:
 
 - **Astro + Rehype** - Flexible Markdown processing pipeline
 - **Shiki** - High-quality syntax highlighting

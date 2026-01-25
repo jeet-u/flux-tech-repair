@@ -2,7 +2,7 @@
 
 ## Overview
 
-astro-koharu's content system is built on **Astro Content Collections**, which is Astro's native content management solution. It provides type-safe content queries, Markdown/MDX support, and flexible schema validation.
+jeet-u's content system is built on **Astro Content Collections**, which is Astro's native content management solution. It provides type-safe content queries, Markdown/MDX support, and flexible schema validation.
 
 The project's content system also includes a sophisticated **categorization system** designed to handle multi-level category structures migrated from Hexo.
 

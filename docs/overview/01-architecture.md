@@ -2,7 +2,7 @@
 
 ## Astro Islands Architecture Concept
 
-astro-koharu 采用 Astro 的 **Islands Architecture（群岛架构）**，这是理解整个项目的核心。
+jeet-u 采用 Astro 的 **Islands Architecture（群岛架构）**，这是理解整个项目的核心。
 
 ### What is Islands Architecture?
 
@@ -34,7 +34,7 @@ Islands Architecture concept: **Pages are static HTML by default, only interacti
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### How It Manifests in astro-koharu
+### How It Manifests in jeet-u
 
 ```typescript
 // Static Astro component - produces no JS

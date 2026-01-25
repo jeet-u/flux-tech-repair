@@ -1,8 +1,8 @@
-# astro-koharu Project Overview
+# jeet-u Project Overview
 
 ## Project Introduction
 
-astro-koharu is a modern static blog system built on **Astro 5.x**, migrated from Hexo with inspiration from the Shoka theme. The project uses React for interactive components, Tailwind CSS for styling, while maintaining compatibility with the original Hexo blog content.
+jeet-u is a modern static blog system built on **Astro 5.x**, migrated from Hexo with inspiration from the Shoka theme. The project uses React for interactive components, Tailwind CSS for styling, while maintaining compatibility with the original Hexo blog content.
 
 ### Project Features
 
@@ -19,7 +19,7 @@ astro-koharu is a modern static blog system built on **Astro 5.x**, migrated fro
 
 ```plain
 ┌─────────────────────────────────────────────────────────────┐
-│                        astro-koharu                         │
+│                        jeet-u                         │
 ├─────────────────────────────────────────────────────────────┤
 │  Framework Layer                                            │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
@@ -64,7 +64,7 @@ astro-koharu is a modern static blog system built on **Astro 5.x**, migrated fro
 ## Directory Structure
 
 ```plain
-astro-koharu/
+jeet-u/
 ├── public/                     # Static assets (directly copied to build directory)
 │   ├── favicon.ico
 │   ├── img/                    # Image assets
@@ -163,7 +163,7 @@ astro-koharu/
 ```bash
 # 1. Clone the project
 git clone <repo-url>
-cd astro-koharu
+cd jeet-u
 
 # 2. Install dependencies
 pnpm install
@@ -303,7 +303,7 @@ This documentation series consists of 10 parts, recommended to read in order:
 
 ## Key Learning Points
 
-- astro-koharu is a modern blog project migrated from Hexo to Astro
+- jeet-u is a modern blog project migrated from Hexo to Astro
 - Uses the Astro Islands architecture, statically rendered by default with on-demand React component activation
 - Project structure is clear and organized by functional modules
 - Uses pnpm as the package manager to ensure consistent dependency versions

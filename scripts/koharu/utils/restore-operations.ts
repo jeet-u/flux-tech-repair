@@ -53,7 +53,7 @@ export function restoreBackup(backupPath: string): string[] {
   const validatedPath = validateBackupFilePath(backupPath);
 
   // Create temporary directory
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'astro-koharu-restore-'));
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'jeet-u-restore-'));
 
   try {
     // Extract to temporary directory
